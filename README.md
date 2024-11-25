@@ -10,7 +10,7 @@ This is a Karaoke App developped in python with the objective of using having fu
 
 ## Table of Contents
 - [Dependences](#dependences)
-- [Instalation and Setup](#installation)
+- [Instalation and Setup](#instalation-and-setup)
 - [Usage](#usage)
 ---
 
@@ -40,7 +40,18 @@ You might also need [ffmpeg](https://www.ffmpeg.org/download.html) if not instal
 
 ## Instalation and Setup
 
-To set up and install this projet you need to fillow to following instruction. 
+Provide step-by-step instructions for installing and setting up your project:
+
+```bash
+# Clone the repository
+git clone https://github.com/Andy-Mod/ingescape-karaoke-v1.0.git
+
+# Navigate to the project directory
+cd your-project
+
+# Install dependencies
+pip install requirements.txt
+```
 
 
 ## Usage
