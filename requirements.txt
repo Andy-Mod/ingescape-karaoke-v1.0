@@ -1,0 +1,9 @@
+ingescape >= 3.0.1
+librosa
+spleeter
+pyaudio
+pygame
+pydub
+simpleaudio
+sounddevice
+tkinter

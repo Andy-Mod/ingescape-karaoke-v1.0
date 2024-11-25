@@ -1,0 +1,28 @@
+/*
+* Whiteboard app
+*/
+
+"Clean-up" {
+    Whiteboard.clear()
+    Whiteboard.title = "titre"
+    Whiteboard.backgroundColor = "white"
+    assert user "Title is 'Title' and background is white"
+}
+
+
+"Inputs" "Test inputs" {
+    assert user "Title is 'Hello world'"
+    assert user "Background color is gray"
+}
+
+"Services" "Test services" {
+    Tretor.play_melodie("data/wave/euphoria.wav")
+    assert user "A song is playing"
+
+    Tretor.transcribe("data/wave/euphoria.wav")
+    assert user "The song is transcribed"
+
+
+    Tretor.get_frequency("Do", "4")
+    assert Tretor.output == 261.63
+}

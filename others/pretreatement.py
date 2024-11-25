@@ -2,5 +2,5 @@ from KaraokeToolBox import *
 
 if __name__ == "__main__":
     
-    treator = Treator()
+    treator = Treatment()
     treator.run_pretreatment()

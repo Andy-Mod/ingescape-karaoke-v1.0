@@ -50,6 +50,11 @@ class Treatment:
             'Si': {1: 61.74, 2: 123.47, 3: 246.94, 4: 493.88, 5: 987.77, 6: 1975.53, 7: 3951.07, 8: 7902.13}
         }
 
+        current_file = os.path.abspath(__file__)
+        dir = current_file.replace(os.path.basename(current_file), "")
+        root_dir = os.path.join(dir, "../")
+        os.chdir(root_dir)
+        print(root_dir, os.getcwd())
     
     def _get_frequency(self, note, octave):
         return self._note_frequencies.get(note, {}).get(octave, None)

@@ -37,13 +37,13 @@ class Application(tk.Tk):
         
         return directory_files
 
-    def __init__(self, tretor): 
+    def __init__(self, tretor, whiteboard): 
         super().__init__()
         
         # Set window title and size
         self.title("karaoke-ingescape-v1.0")
-        self.geometry("600x400")
-        self.minsize(400, 300)  
+        self.geometry("800x500")
+        self.minsize(600, 500)  
 
         # Useful attributes 
         self.karaoke_on_play_song = None
@@ -56,8 +56,8 @@ class Application(tk.Tk):
         self.is_running = False
         self.lyrics_data = []
         self.treator = tretor
+        self.whiteboard = whiteboard
         
-
         self.root_path = os.getcwd()
         self.audio_dir = os.path.join(self.root_path, "data", "mp3")
         self.lrc_dir = os.path.join(self.root_path, "data", "LRCFiles")
@@ -95,7 +95,7 @@ class Application(tk.Tk):
         
         # Submenu Menu
         menu_submenu = Menu(scene_menu, tearoff=0)
-        menu_submenu.add_command(label="Play", command=self.show_play)
+        menu_submenu.add_command(label="Play", command=self.show_select_category)
         menu_submenu.add_command(label="Learn", command=self.show_learn_alone)
         
         # Add Scenes Cascade to menu bar
@@ -112,12 +112,6 @@ class Application(tk.Tk):
 
         menu_bar.add_cascade(label="Add New", menu=add_menu)
         
-        # # Credits
-        # menu_bar.add_command(label="Credits", command=self.show_learn_alone)
-
-        # # Help
-        # menu_bar.add_command(label="Help", command=self.show_learn_alone)
-
         # Back
         menu_bar.add_command(label="Back", command=self.go_back)
         self.scene_history = []
@@ -163,7 +157,7 @@ class Application(tk.Tk):
         if self.frame:
             self.frame.destroy()
         
-        category_selection_Whiteboard_interface()
+        self.whiteboard.category_selection_Whiteboard_interface()
 
         # Create the main canvas and frame
         self.canvas = tk.Canvas(self)
@@ -207,7 +201,7 @@ class Application(tk.Tk):
         self.karaoke_stop_event.clear() 
         self.recording_stop_event.clear() 
 
-        selection_of_song_Whiteboard_interface()
+        self.whiteboard.selection_of_song_Whiteboard_interface()
         
         # Create the main canvas and frame
         self.canvas = tk.Canvas(self)
@@ -286,7 +280,7 @@ class Application(tk.Tk):
         if selected_item in self.songs_info and self.songs_info[selected_item] != {}:
             self.full_name = self.songs_info[selected_item]["ar"] + ' - ' + self.songs_info[selected_item]["ti"]
 
-        show_song_preview(selected_item, self.full_name)
+        self.whiteboard.show_song_preview(selected_item, self.full_name)
     
     def play_audio(self, file_name):
         """Play the loaded audio file."""
@@ -329,29 +323,6 @@ class Application(tk.Tk):
             print(f"Error: The file '{lrc_file_path}' was not found.")
         except Exception as e:
             print(f"Error: {e}")
-    
-
-    # def _get_best_microphone(self):
-    #     """Select the best microphone based on input device capabilities."""
-    #     devices = sd.query_devices()
-    #     print("Available Devices:")
-    #     for idx, device in enumerate(devices):
-    #         print(f"{idx}: {device['name']} - Max Input Channels: {device['max_input_channels']}")
-        
-    #     # Filter input-capable devices and select the one with the highest input channels
-    #     input_devices = [
-    #         (idx, device) for idx, device in enumerate(devices) if device['max_input_channels'] > 0
-    #     ]
-        
-    #     # Sort devices by max input channels (descending)
-    #     input_devices = sorted(input_devices, key=lambda x: x[1]['max_input_channels'], reverse=True)
-        
-    #     if not input_devices:
-    #         raise RuntimeError("No suitable input devices found.")
-        
-    #     best_device_index, best_device = input_devices[0]
-    #     print(f"Selected Device: {best_device['name']} (Index: {best_device_index})")
-    #     return best_device_index
 
     def start_recording(self, duration, output_path):
         """Start recording user voice for karaoke with better thread management and error handling."""
@@ -387,9 +358,9 @@ class Application(tk.Tk):
     def karaoke_loop(self):
         """Thread function to handle karaoke playback and lyric synchronization."""
         try:
+            
             while pygame.mixer.music.get_busy() and not self.karaoke_stop_event.is_set():
                 self.update_lyrics_display()
-                # remettre le code classic de l'interface puis créer un autre update loop pour le whiteboard pour éviter le crash
         except Exception as e:
             print(f"Error during karaoke loop: {e}")
 
@@ -413,12 +384,7 @@ class Application(tk.Tk):
             self.progress_bar['value'] = progress
             for lyric in self.lyrics_data:
                 if lyric["timestamp"] <= current_time:
-                    if lyric["lyric"].replace(',', ',\n') != self.lyrcs:
-                        show_lyrics(lyric["lyric"].replace(',', ',\n'), self.full_name)
-                        self.lyrcs = lyric["lyric"].replace(',', ',\n')
-                    else:
-                        pass
-
+                    self.lyrics_label.config(text=lyric["lyric"].replace(',', ',\n'))
         except Exception as e:
             print(f"Error updating UI elements: {e}")
 
@@ -427,8 +393,8 @@ class Application(tk.Tk):
         self.karaoke_stop_event.clear()
         self.recording_stop_event.clear()
 
-        init_karaoke(self.full_name)
-        self.lyrcs = ""
+        self.whiteboard.init_karaoke(self.full_name)
+        self.whiteboard.show_lyrics()
 
         self.karaoke_on_play_song = selected_item
         self.lrc_file_path = os.path.join(self.lrc_dir, selected_item + '.lrc')
@@ -445,6 +411,7 @@ class Application(tk.Tk):
 
         try:
             self.lyrics_data = self.parse_lrc(self.lrc_file_path)
+            self.lrcs = ""
             pygame.mixer.init()
             pygame.mixer.music.load(self.song_file_path)
             self.song_length = pygame.mixer.Sound(self.song_file_path).get_length()
@@ -464,7 +431,6 @@ class Application(tk.Tk):
 
         self.countdown_label.config(text="Let's Sing!")
         self.frame.update()
-        time.sleep(1)
 
         pygame.mixer.music.play()
 
@@ -482,6 +448,7 @@ class Application(tk.Tk):
         )
         self.karaoke_thread.start()
         self.is_running = True
+        self.whiteboard.show_lyrics()
 
         self.scene_history.append(self.show_play)
 
@@ -493,15 +460,17 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
         self.full_name = selected_item
-
         if selected_item in self.songs_info and self.songs_info[selected_item] != {}:
             self.full_name = self.songs_info[selected_item]["ar"] + ' - ' + self.songs_info[selected_item]["ti"]
         
+        self.lyrics_label = tk.Label(self.frame, font=("Arial", 12), width=80, height=8)
+        self.lyrics_label.grid(row=3, column=5, pady=20)
+
         self.progress_bar = ttk.Progressbar(self.frame, length=500, mode='determinate')
-        self.progress_bar.grid(row=2, column=5, pady=20)
+        self.progress_bar.grid(row=6, column=5, pady=20)
 
         self.countdown_label = tk.Label(self.frame, font=("Arial", 18))
-        self.countdown_label.grid(row=4, column=5, pady=20)
+        self.countdown_label.grid(row=8, column=5, pady=20)
 
         self.restart_button = tk.Button(self.frame, text="Restart", command=self.restart_karaoke)
         self.restart_button.grid(row=1, column=0, pady=10)
@@ -509,10 +478,11 @@ class Application(tk.Tk):
         label = tk.Label(self.frame, text=f"Song In play {self.full_name}", font=("Arial", 20))
         label.grid(row=1, column=5, padx=10, pady=10)
 
-        add_Text(f"Song In play {self.full_name}", 10, 105.5, "black", "")
-
         self.stop_button = tk.Button(self.frame, text="Stop", command=self.stop_karaoke)
         self.stop_button.grid(row=1, column=1, pady=10)
+
+        igs.output_set_string("title", f"Now playing {self.full_name}")
+
 
     def restart_karaoke(self):
         """Stop current karaoke and restart."""
@@ -578,7 +548,8 @@ class Application(tk.Tk):
         
         player_name = "player_"+ str(uuid.uuid4())
         
-        self.treator._save_score(player_name, result, self.full_name, self.level)
+        args = (player_name, result, self.full_name, self.level)
+        igs.service_call("Tretor", "save_score", args, "")
         
         self.show_result(result)
 
@@ -593,10 +564,10 @@ class Application(tk.Tk):
         replay_button = tk.Button(self.frame, text="Try again !", command=lambda i=self.karaoke_on_play_song: self.start_karaoke(i))
         replay_button.grid(row=2, column=3, pady=10)
 
-        play_an_other_button = tk.Button(self.frame, text="New Game !", command=self.show_play)
+        play_an_other_button = tk.Button(self.frame, text="New Game !", command=self.show_select_category)
         play_an_other_button.grid(row=2, column=1, pady=10)
 
-
+        self.whiteboard.show_score(result) 
         # Show the result in the main app
         self.result_label.config(text=result)
     
@@ -626,12 +597,15 @@ class Application(tk.Tk):
             "  3. Hard: 20+ rounds of singing\n\n"
             "Press 'Start' to begin!"
         )
+
         description_label = tk.Label(self.frame, text=description_text, font=("Arial", 12), justify="left", wraplength=600)
         description_label.grid(row=1, column=0, columnspan=2, padx=20, pady=10)
 
         # Start button
         start_button = tk.Button(self.frame, text="Start", command=self.show_learn_level_choose)
         start_button.grid(row=2, column=0, columnspan=2, pady=20)
+
+        self.whiteboard.init_learn()
 
         self.scene_history.append(self.show_learn_alone)
 
@@ -664,6 +638,8 @@ class Application(tk.Tk):
         """Set up UI for the learning process."""
         if self.frame:
             self.frame.destroy()
+        self.level = level
+
         self.frame = tk.Frame(self)
         self.frame.grid(row=0, column=0, sticky="nsew")
 
@@ -687,11 +663,23 @@ class Application(tk.Tk):
         self.countdown_label.grid(row=3, column=0, columnspan=3, pady=20)
 
         # Buttons
-        restart_button = tk.Button(self.frame, text="Restart", command=self.restart_karaoke)
+        restart_button = tk.Button(self.frame, text="Restart", command=self.restart_learn)
         restart_button.grid(row=4, column=0, pady=20)
 
         stop_button = tk.Button(self.frame, text="Stop", command=self.stop_karaoke)
         stop_button.grid(row=4, column=2, pady=20)
+
+        self.whiteboard.init_learn()
+
+    def restart_learn(self):
+        self.stop_karaoke()
+
+        if self.level == 'easy':
+            self.show_learn_easy()
+        elif self.level == "mid":
+            self.show_learn_medium()
+        elif self.level == "hard":
+            self.show_learn_hard()
         
     def start_learn(self, level, file_name, song):
         """Display content for Karaoke with improved thread and event handling."""
@@ -740,6 +728,7 @@ class Application(tk.Tk):
             daemon=True
         )
         self.recording_thread.start()
+        self.whiteboard.show_lyrics()
         
         time.sleep(self.song_length)
         
@@ -775,6 +764,7 @@ class Application(tk.Tk):
     def show_learn_easy(self):
         """Start the Easy level learning session."""
         self.result_learn = 0
+        self.level = "easy"
 
         if self.frame:
             self.frame.destroy()
@@ -797,13 +787,14 @@ class Application(tk.Tk):
         if self.karaoke_thread:
             self.karaoke_thread.join(timeout=2)
         # Show results
-        self.treator._save_score("player" + str(uuid.uuid4()), self.result_learn,'Learn Easy Mode', "Easy")
+        args = ("player" + str(uuid.uuid4()), self.result_learn,'Learn Easy Mode', "Easy")
+        igs.service_call("Tretor", "save_score", args, "")
         self.start_score_compute_learn()
         
     def show_learn_medium(self):
         """Start the Medium level learning session."""
         self.result_learn = 0
-
+        self.level = "mid"
         if self.frame:
             self.frame.destroy()
         self.frame = tk.Frame(self)
@@ -823,12 +814,14 @@ class Application(tk.Tk):
             self.start_learn("Medium", file_name, song_path)
 
         # Show results
-        self.treator._save_score("player" + str(uuid.uuid4()), self.result_learn,'Learn Medium Mode', "Medium")
+        args = ("player" + str(uuid.uuid4()), self.result_learn,'Learn Medium Mode', "Medium")
+        igs.service_call("Tretor", "save_score", args, "")
         self.start_score_compute_learn()
         
     def show_learn_hard(self):
         """Start the Hard level learning session."""
         self.result_learn = 0
+        self.level = "hard"
 
         if self.frame:
             self.frame.destroy()
@@ -848,7 +841,8 @@ class Application(tk.Tk):
             self.start_learn("Hard", file_name, song_path)
 
         # Show results
-        self.treator._save_score("player" + str(uuid.uuid4()), self.result_learn,'Learn Hard Mode', "Hard")
+        args = ("player" + str(uuid.uuid4()), self.result_learn,'Learn Hard Mode', "Hard")
+        igs.service_call("Tretor", "save_score", args, "")
         self.start_score_compute_learn()
 
     def start_score_compute_learn(self):
@@ -884,7 +878,8 @@ class Application(tk.Tk):
         
         # Start the loading animation
         self.progress_bar.start(10)
-        self.show_result_learn(self.result_learn)        
+        
+        self.show_result_learn(self.result_learn)   
 
     def show_result_learn(self, result):
         # Stop the loading screen and show the main app with result
@@ -901,23 +896,8 @@ class Application(tk.Tk):
         play_an_other_button.grid(row=2, column=1, pady=10)
 
         # Show the result in the main app
+        self.whiteboard.show_score(self.result_learn) 
         self.result_label.config(text=result)
-        
-    
-    def show_learn_w_friend(self):
-        """Display content for Scene learn."""
-        if self.frame:
-            self.frame.destroy()
-        self.frame = tk.Frame(self)
-        self.frame.grid(row=0, column=0, sticky="nsew")
-        
-        self.rowconfigure(0, weight=1)
-        self.columnconfigure(0, weight=1)
-        
-        label = tk.Label(self.frame, text="Learn With A Friend !", font=("Arial", 24))
-        label.grid(row=0, column=0, padx=10, pady=10)
-
-        self.scene_history.append(self.show_learn_w_friend)
         
     def show_csv_table(self, sort_by):
         if self.frame:

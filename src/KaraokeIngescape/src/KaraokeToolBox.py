@@ -339,12 +339,32 @@ class Treatment:
 
         return combined_track
 
+    
     def _play_melodie(self, melody):
         play(melody)
     
     def _save_melodie(self, melody, output_file="generated_melody.wav"):
         melody.export(output_file, format="wav")
         print(f"Melody saved as {output_file}")
+
+
+    def run_pretreatment(self):
+        # generate melodies for learning mode with lirycs 
+        treator = Treatment()
+
+        files = [file for file in os.listdir(self.data_path) if os.path.isfile(os.path.join(self.data_path, file))]
+        for file in files:
+            
+            full_path = os.path.join(self.data_path, file)
+            print(f"Processing file: {file}")
+            
+            wav_file = self._convert_to_wav(full_path)
+            vocals, _ = self._separate_audio(wav_file)
+            self._transcribe(vocals)
+
+            self._save_file_informations("data/others/songs_info.json")
+            
+        print("Pre-treatment process completed successfully.")
 
 
 if __name__ == "__main__":

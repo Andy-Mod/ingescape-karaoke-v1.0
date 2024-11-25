@@ -4,7 +4,7 @@
 #
 #  main.py
 #  KaraokeIngescape
-#  Created by Ingenuity i/o on 2024/11/15
+#  Created by Ingenuity i/o on 2024/11/16
 #
 # <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 # <html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">
@@ -101,9 +101,7 @@ def on_agent_event_callback(event, uuid, name, event_data, my_data):
     try:
         agent_object = my_data
         assert isinstance(agent_object, KaraokeIngescape)
-        if event == igs.AGENT_KNOWS_US:
-            if name == "KaraokeIngescape":
-                print("Il est la le KaraokeIngescape")
+        # add code here if needed
     except:
         print(traceback.format_exc())
 
@@ -122,6 +120,9 @@ def elementCreated_callback(sender_agent_name, sender_agent_uuid, service_name, 
         agent_object = my_data
         assert isinstance(agent_object, KaraokeIngescape)
         elementId = tuple_args[0]
+        print("call_back :", token, elementId)
+        agent_object.whitebord.add_id(token, elementId)
+        print(agent_object.whitebord.element_list)
         agent_object.elementCreated(sender_agent_name, sender_agent_uuid, elementId, token)
     except:
         print(traceback.format_exc())
@@ -206,15 +207,14 @@ li.checked::marker { content: "\2612"; }
     igs.output_create("clear", igs.IMPULSION_T, None)
 
     igs.service_init("elementCreated", elementCreated_callback, agent)
-    igs.service_arg_add("elementCreated", "token", igs.INTEGER_T)
     igs.service_arg_add("elementCreated", "elementId", igs.INTEGER_T)
 
     igs.start_with_device(device, port)
     # catch SIGINT handler after starting agent
     signal.signal(signal.SIGINT, signal_handler)
-    
+
     agent.launchInterface(Treatment())
-    
+
     if interactive_loop:
         print_usage_help()
         while True:
@@ -226,6 +226,6 @@ li.checked::marker { content: "\2612"; }
     else:
         while (not is_interrupted) and igs.is_started():
             time.sleep(2)
-    
+
     if igs.is_started():
         igs.stop()

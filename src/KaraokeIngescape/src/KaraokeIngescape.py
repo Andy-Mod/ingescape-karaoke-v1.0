@@ -4,7 +4,7 @@
 #
 #  KaraokeIngescape.py
 #  KaraokeIngescape
-#  Created by Ingenuity i/o on 2024/11/15
+#  Created by Ingenuity i/o on 2024/11/16
 #
 # <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 # <html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">
@@ -19,7 +19,6 @@ import ingescape as igs
 from  graphicalKaraoke import *
 from whiteBordUtils import *
 
-elementID_list={}
 class Singleton(type):
     _instances = {}
     def __call__(cls, *args, **kwargs):
@@ -30,12 +29,14 @@ class Singleton(type):
 
 class KaraokeIngescape(metaclass=Singleton):
     def __init__(self):
+        pass
         # outputs
         self._backgroungColorO = None
         self._titleO = None
         self._hideLabelsO = None
 
         self.graphical_interface = None
+        self.whitebord = WhiteboardUtils()
 
         # atributes
         current_file = os.path.abspath(__file__)
@@ -78,17 +79,15 @@ class KaraokeIngescape(metaclass=Singleton):
 
 
     # services
-    def elementCreated(self, sender_agent_name, sender_agent_uuid, token, elementId):
-        if token not in elementID_list:
-            elementID_list[token] = []
-        elementID_list[token].append(elementId)
-        print (elementID_list)
+    def elementCreated(self, sender_agent_name, sender_agent_uuid, elementId, token):
+        # self.whitebord.add_id(token, elementId)
+        pass
 
     def launchInterface(self, tretor):
 
-        init_whiteboard_interface()
+        self.whitebord.init_whiteboard_interface()
 
-        self.graphical_interface = Application(tretor)
+        self.graphical_interface = Application(tretor, self.whitebord)
         self.graphical_interface.mainloop()
 
 

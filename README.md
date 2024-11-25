@@ -21,7 +21,7 @@ This project was built using:
 - [Ingescape Circle](https://ingescape.com/fr/circle/)
 - [The WhiteBoard](https://ingescape.com/)
 
-If you don't have [Ingescape Circle](https://ingescape.com/fr/circle/), a full version of the app running exclusively in Python is available [here](#) (add a link later).
+If you don't have [Ingescape Circle](https://ingescape.com/fr/circle/), a full version of the app running exclusively in Python is available [here](#) soon.
 
 To run the code, you need to install the following:
 
@@ -30,6 +30,7 @@ To run the code, you need to install the following:
 - [openai-whisper](https://github.com/openai/whisper)
 - [pyaudio](https://pypi.org/project/PyAudio/)
 - [pydub](https://pypi.org/project/pydub/)
+- [pygame](https://pypi.org/project/pygame/)
 - [simpleaudio](https://pypi.org/project/simpleaudio/)
 - [sounddevice](https://pypi.org/project/sounddevice/)
 - [Tkinter](https://docs.python.org/3/library/tkinter.html)
@@ -56,10 +57,13 @@ cd ingescape-karaoke-v1.0
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Install openai-whisper
+pip install -U openai-whisper
 ```
 
 ### Downloading Data Files
-Follow this link (add link) to download the data files for the Karaoke App.
+Follow this [link](https://drive.google.com/file/d/1Lw4P8eF8YxKQ4cJGKJKY6C_bAbtlaTiI/view?usp=sharing) to download the data files for the Karaoke App.
 Once downloaded, move the files to the project's directory (ingescape-karaoke-v1.0).
 
 ### Setting Up the App
