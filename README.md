@@ -2,27 +2,28 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
-![Contributors](https://img.shields.io/github/contributors/your-repo/your-project.svg)
 
-This is a Karaoke App developped in python with the objective of using having fun but moreover, the goal is to use Ingescape Circle to enable a Distributed Interactive System.
+This is a Karaoke App developed in Python with the objective of having fun while leveraging Ingescape Circle to enable a Distributed Interactive System.
 
 ---
 
 ## Table of Contents
-- [Dependences](#dependences)
-- [Instalation and Setup](#instalation-and-setup)
+- [Dependencies](#dependencies)
+- [Installation and Setup](#installation-and-setup)
 - [Usage](#usage)
+
 ---
 
-## Dependences
+## Dependencies
 
 This project was built using:
 - [Python 3.10](https://www.python.org/downloads/release/python-3100/)
 - [Ingescape Circle](https://ingescape.com/fr/circle/)
+- [The WhiteBoard](https://ingescape.com/)
 
-If you don't have [Ingescape Circle](https://ingescape.com/fr/circle/), a full version of the app running exclusively in python is available here (add a link later) 
+If you don't have [Ingescape Circle](https://ingescape.com/fr/circle/), a full version of the app running exclusively in Python is available [here](#) (add a link later).
 
-To run the code you need to install the following:
+To run the code, you need to install the following:
 
 - [librosa](https://pypi.org/project/librosa/0.4.1/)
 - [spleeter](https://pypi.org/project/spleeter/)
@@ -34,24 +35,65 @@ To run the code you need to install the following:
 - [Tkinter](https://docs.python.org/3/library/tkinter.html)
 - [ingescape](https://pypi.org/project/ingescape/)
 
-You might also need [ffmpeg](https://www.ffmpeg.org/download.html) if not installed.  
+You might also need [ffmpeg](https://www.ffmpeg.org/download.html) if it's not installed.
 
 ---
 
-## Instalation and Setup
+## Installation and Setup
 
-Provide step-by-step instructions for installing and setting up your project:
+Provide step-by-step instructions for installing and setting up the project on Linux. These steps are practically the same for other OS distributions.
+
+### Installing the Dependencies
+
+Open a terminal and type the following commands:
 
 ```bash
 # Clone the repository
 git clone https://github.com/Andy-Mod/ingescape-karaoke-v1.0.git
 
 # Navigate to the project directory
-cd your-project
+cd ingescape-karaoke-v1.0
 
 # Install dependencies
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
+### Downloading Data Files
+Follow this link (add link) to download the data files for the Karaoke App.
+Once downloaded, move the files to the project's directory (ingescape-karaoke-v1.0).
+
+### Setting Up the App
+Open a new terminal and type the following commands:
+```bash
+# Navigate to the project directory
+cd ingescape-karaoke-v1.0
+
+# Launch the initial pre-treatment
+python others/pretreatment.py
+```
+This process may take a little time, so feel free to grab a coffee while it runs.
 
 ## Usage
+
+At this stage, everything should be ready. Ensure that Circle and the WhiteBoard are running and connected properly.
+Choose the device and port on which you would like to run the application.
+
+Open a new terminal and type the following commands:
+```bash
+# Navigate to the project directory
+cd ingescape-karaoke-v1.0 
+
+# Launch the Karaoke application
+python src/KaraokeIngescape/src/main.py KaraokeIngescape --verbose --port chosen_port --device chosen_device
+```
+Open another terminal and type these commands:
+```bash
+# Navigate to the project directory
+cd ingescape-karaoke-v1.0 
+
+# Launch the Tretor application
+python src/Tretor/src/main.py Tretor --verbose --port chosen_port --device chosen_device
+```
+
+You did it! The agents will soon be running in Circle. Once again, this might take a little time.
+
