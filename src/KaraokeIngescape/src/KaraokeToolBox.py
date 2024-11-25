@@ -23,7 +23,7 @@ logging.getLogger('whisper').setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 
 class Treatment:
-    def __init__(self, data_path='data/mp3/', whisper_model_path='whisper_model/base.pt', score_path="data/others/scores.csv"):
+    def __init__(self, data_path='data/mp3/', whisper_model_path='base.pt', score_path="data/others/scores.csv"):
         self.data_path = data_path
         self.score_path = score_path
         self.transcriber = whisper.load_model(whisper_model_path)
