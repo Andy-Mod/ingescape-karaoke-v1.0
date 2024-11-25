@@ -1,4 +1,4 @@
-import numpy as np # numpy==1.25
+import numpy as np
 from pydub import AudioSegment
 from pydub.playback import play
 from pydub.generators import Sine
