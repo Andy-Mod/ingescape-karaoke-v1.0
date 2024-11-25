@@ -1,0 +1,1047 @@
+{
+    "extensions": {
+        "eventsTimeline": {
+            "events": [
+            ],
+            "patterns": [
+            ],
+            "timelines": [
+                {
+                    "eventInstances": [
+                    ],
+                    "name": "Timeline_1",
+                    "order": 0,
+                    "patternInstances": [
+                    ]
+                }
+            ]
+        },
+        "recordAndReplay": {
+            "filters": {
+            }
+        }
+    },
+    "library": {
+        "classes": [
+            {
+                "className": "Whiteboard",
+                "color": 0,
+                "definition": {
+                    "inputs": [
+                        {
+                            "name": "title",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "backgroundColor",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "labelsVisible",
+                            "type": "BOOL"
+                        },
+                        {
+                            "name": "chatMessage",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "clear",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "ui_command",
+                            "type": "STRING"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "lastChatMessage",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "lastAction",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "ui_error",
+                            "type": "STRING"
+                        }
+                    ],
+                    "services": [
+                        {
+                            "arguments": [
+                                {
+                                    "name": "message",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "chat"
+                        },
+                        {
+                            "name": "snapshot",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "base64Png",
+                                            "type": "DATA"
+                                        }
+                                    ],
+                                    "name": "snapshotResult"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "clear"
+                        },
+                        {
+                            "name": "showLabels"
+                        },
+                        {
+                            "name": "hideLabels"
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "type",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "x",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "y",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "width",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "height",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "fill",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "stroke",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "strokeWidth",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "addShape",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "elementId",
+                                            "type": "INTEGER"
+                                        }
+                                    ],
+                                    "name": "elementCreated"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "text",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "x",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "y",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "color",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "addText",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "elementId",
+                                            "type": "INTEGER"
+                                        }
+                                    ],
+                                    "name": "elementCreated"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "base64",
+                                    "type": "DATA"
+                                },
+                                {
+                                    "name": "x",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "y",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "width",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "height",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "addImage",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "elementId",
+                                            "type": "INTEGER"
+                                        }
+                                    ],
+                                    "name": "elementCreated"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "url",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "x",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "y",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "addImageFromUrl",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "elementId",
+                                            "type": "INTEGER"
+                                        }
+                                    ],
+                                    "name": "elementCreated"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                }
+                            ],
+                            "name": "remove",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "dx",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "dy",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "translate",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "x",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "y",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "moveTo",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "property",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "setStringProperty",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "property",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "DOUBLE"
+                                }
+                            ],
+                            "name": "setDoubleProperty",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "succeeded",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "actionResult"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "getElementIds",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "jsonArray",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "elementIds"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "getElements",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "jsonArray",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "elements"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "description": "",
+                "icon": -1,
+                "package": "",
+                "plugin": "ingescape_class",
+                "uuid": "da188ebf-de13-4832-9dcd-bdef00dc9d6c",
+                "version": ""
+            },
+            {
+                "className": "KaraokeIngescape",
+                "color": 3,
+                "definition": {
+                    "outputs": [
+                        {
+                            "name": "backgroungColor",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "title",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "hideLabels",
+                            "type": "BOOL"
+                        },
+                        {
+                            "name": "clear",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "services": [
+                        {
+                            "arguments": [
+                                {
+                                    "name": "token",
+                                    "type": "INTEGER"
+                                },
+                                {
+                                    "name": "elementId",
+                                    "type": "INTEGER"
+                                }
+                            ],
+                            "name": "elementCreated"
+                        }
+                    ]
+                },
+                "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13px; color:#2a2a2a;\">WhiteBoard interface setter, Interface for selection  and linking hub</span></p></body></html>",
+                "icon": 11,
+                "package": "",
+                "plugin": "ingescape_class",
+                "uuid": "05863c55-b076-4769-a489-180549bde24b",
+                "version": ""
+            },
+            {
+                "className": "Tretor",
+                "color": 2,
+                "definition": {
+                    "outputs": [
+                        {
+                            "name": "output",
+                            "type": "STRING"
+                        }
+                    ],
+                    "services": [
+                        {
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">R<span style=\" font-size:13px; color:#2a2a2a;\">un every treatements needed to prep files involved in the Karaoke App</span></p></body></html>",
+                            "name": "run_pretreatment"
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "output_file",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "save_melodie"
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "melodie",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "play_melodie"
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">a <span style=\" font-size:13px; color:#2a2a2a;\">dictionary which contains the title, a list of notes, a list of duration and a dictionnary for faddings</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13px; color:#2a2a2a;\">example :</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">{</span></p>\n<pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;\"><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">            </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">&quot;</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">title</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">&quot;</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">: </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">&quot;</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">Simple_Scale</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">&quot;</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">,</span></pre>\n<pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;\"><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">            </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">&quot;</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">notes</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">&quot;</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">: [</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">Do4</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">, </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">Re4</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">, </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">Mi4</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">, </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">Fa4</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">, </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">Sol4</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">, </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">Fa4</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">, </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">Mi4</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">, </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">Re4</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">, </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">Do4</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">],</span></pre>\n<pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;\"><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">            </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">&quot;</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">durations</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">&quot;</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">: [</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#098658;\">400</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">] * </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#098658;\">9</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">,</span></pre>\n<pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;\"><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">            </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">&quot;</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">faddings</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">&quot;</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">: [{</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">fade_in</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">: </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#098658;\">50</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">, </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#a31515;\">fade_out</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#e21f1f;\">'</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">: </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#098658;\">50</span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">}] * </span><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#098658;\">9</span></pre>\n<pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;\"><span style=\" font-family:'Consolas','Courier New','monospace'; font-size:14px; color:#000000;\">}</span></pre></body></html>",
+                                    "name": "informations",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">G<span style=\" font-size:13px; color:#2a2a2a;\">enerate a melodie from scrach</span></p></body></html>",
+                            "name": "generate_melodie",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "output_path",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "output"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "audio_1_path",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "audio_2_path",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">H<span style=\" font-size:13px; color:#2a2a2a;\">elps merge two audio files together </span></p></body></html>",
+                            "name": "merge_audios",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "merged_audio_path",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "output"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "path_to_json_file",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">S<span style=\" font-size:13px; color:#2a2a2a;\">ave the details information available for a set of song in a json file</span></p></body></html>",
+                            "name": "save_file_informations"
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "path_to_json_file",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">L<span style=\" font-size:13px; color:#2a2a2a;\">oad the full informations available for the data set of audio files</span></p></body></html>",
+                            "name": "load_song_infos",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "dictionary",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "output"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "player_id",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "score",
+                                    "type": "DOUBLE"
+                                },
+                                {
+                                    "name": "song_name",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "level",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">S<span style=\" font-size:13px; color:#2a2a2a;\">ave a player's score</span></p></body></html>",
+                            "name": "save_score",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "is_saved",
+                                            "type": "BOOL"
+                                        }
+                                    ],
+                                    "name": "output"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "audio_file_1",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "audio_file_2",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">H<span style=\" font-size:13px; color:#2a2a2a;\">elps compare two audio files</span></p></body></html>",
+                            "name": "compare_audios",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "score",
+                                            "type": "DOUBLE"
+                                        }
+                                    ],
+                                    "name": "output"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "input_file",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "output_dir",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13px; color:#2a2a2a;\">Extract a set of interesting features from audio files for an &quot;accurate&quot; comparaison of audio files to one another </span></p></body></html>",
+                            "name": "extract_features",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "output_path",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "output"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "input_file",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "output_dir",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">H<span style=\" font-size:13px; color:#2a2a2a;\">elp split an audio music file into two : the vocals and the instruments (powered by the spleeter library by Deezer)</span></p></body></html>",
+                            "name": "separate_audio"
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "input_file",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "output_dir",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">H<span style=\" font-size:13px; color:#2a2a2a;\">elps transcribe the content of an audio file using the openai-whisper library</span></p></body></html>",
+                            "name": "transcribe",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "transcription",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "output"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "file_name",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "path_to_lrc",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">h<span style=\" font-size:13px; color:#2a2a2a;\">elps parse an .LRC file into a readable one long string</span></p></body></html>",
+                            "name": " parse_lrc_file",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "lrcs",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "output"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "input_file",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "output_dir",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13px; color:#2a2a2a;\">Helps convert an mp3 file to wav</span></p></body></html>",
+                            "name": "convert_to_wav",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "output_path",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "output"
+                                }
+                            ]
+                        },
+                        {
+                            "arguments": [
+                                {
+                                    "name": "note",
+                                    "type": "STRING"
+                                },
+                                {
+                                    "name": "octave",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">H<span style=\" font-size:13px; color:#2a2a2a;\">elps get the right sinusoidal frequency for a said note and octave</span></p></body></html>",
+                            "name": "get_frequency",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "frequency",
+                                            "type": "DOUBLE"
+                                        }
+                                    ],
+                                    "name": "output"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">T<span style=\" font-size:13px; color:#2a2a2a;\">ool box for background computation and treatments for the karaoke app </span></p></body></html>",
+                "icon": 1015,
+                "package": "",
+                "plugin": "ingescape_class",
+                "uuid": "98b0997b-8dde-4797-899f-a34fe97cc72a",
+                "version": ""
+            }
+        ]
+    },
+    "systemViews": [
+        {
+            "children": [
+                {
+                    "agent": {
+                        "instances": [
+                            {
+                                "commandLine": "\"C:\\Users\\ghazo\\Desktop\\UPSSITECH\\3A\\interaction distri\\Whiteboard\\Whiteboard.exe\"",
+                                "hostname": "DESKTOP-41HPS4L",
+                                "ip": "172.17.47.187",
+                                "isAttachedToCircle": false,
+                                "mac": "BC:09:1B:FB:8C:77",
+                                "uuid": "cdc0a8ea-2d95-4bde-b373-f2b71a3a9c66"
+                            },
+                            {
+                                "commandLine": "\"C:\\Users\\ghazo\\Desktop\\UPSSITECH\\3A\\interaction distri\\Whiteboard\\Whiteboard.exe\"",
+                                "hostname": "DESKTOP-41HPS4L",
+                                "ip": "172.17.42.230",
+                                "isAttachedToCircle": false,
+                                "uuid": "4020f4dd-dc1b-46e7-8ba1-88fb63795518"
+                            },
+                            {
+                                "commandLine": "C:\\Users\\molester\\Documents\\Whiteboard\\Whiteboard.exe",
+                                "hostname": "DESKTOP-BNIABS5",
+                                "ip": "127.0.0.1",
+                                "isAttachedToCircle": false,
+                                "uuid": "b785aef1-df88-44eb-ab76-2a8b1b909da1"
+                            }
+                        ]
+                    },
+                    "class": "da188ebf-de13-4832-9dcd-bdef00dc9d6c",
+                    "comment": "",
+                    "height": 202,
+                    "name": "Whiteboard",
+                    "simulationTime": 5000,
+                    "uuid": "ed92e37f-6370-4b4d-ab35-33313ecbd1ae",
+                    "width": 250,
+                    "x": 950.2417049262242,
+                    "y": 358.39517584638895
+                },
+                {
+                    "data": {
+                        "arguments": [
+                            {
+                                "input_file": "data/mp3/thehillbillies.mp3"
+                            },
+                            {
+                                "output_dir": "a"
+                            }
+                        ],
+                        "selectedAgentUuid": "aefd634d-3ba8-4f33-9600-e77771acc10f",
+                        "selectedService": "transcribe"
+                    },
+                    "height": 188,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "0f11e02f-8292-4ca9-8d6b-b96fe6e256fe",
+                    "width": 246,
+                    "x": 240.9319870750478,
+                    "y": 1005.5033399910468
+                },
+                {
+                    "data": {
+                        "arguments": [
+                            {
+                                "audio_file_1": "data/wave/euphoria.wav"
+                            },
+                            {
+                                "audio_file_2": "data/wave/i.wav"
+                            }
+                        ],
+                        "selectedAgentUuid": "aefd634d-3ba8-4f33-9600-e77771acc10f",
+                        "selectedService": "compare_audios"
+                    },
+                    "height": 188,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "0cb22d9f-bbe4-424f-80fb-dba02c633cda",
+                    "width": 246,
+                    "x": 557.9814186207689,
+                    "y": 1002.3668586457171
+                },
+                {
+                    "data": {
+                        "arguments": [
+                            {
+                                "path_to_json_file": "data/others/songs_info.json"
+                            }
+                        ],
+                        "selectedAgentUuid": "aefd634d-3ba8-4f33-9600-e77771acc10f",
+                        "selectedService": "load_song_infos"
+                    },
+                    "height": 149,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "9c51d421-5d09-4cb2-80bc-c5bfa851290c",
+                    "width": 246,
+                    "x": 875.6434696907061,
+                    "y": 1019.7893157291305
+                },
+                {
+                    "agent": {
+                        "instances": [
+                            {
+                                "commandLine": "C:\\Users\\molester\\anaconda3\\envs\\env\\python.exe c:/Users/molester/Documents/Ingescape/sandbox/Tretor/src/main.py",
+                                "hostname": "DESKTOP-BNIABS5",
+                                "ip": "127.0.0.1",
+                                "isAttachedToCircle": false,
+                                "uuid": "07c20194-80ea-4e5e-ae16-24b36503bdb9"
+                            },
+                            {
+                                "commandLine": "C:\\Users\\molester\\anaconda3\\envs\\env\\python.exe c:/Users/molester/Documents/3A_SRI/Projet_Karaoke/src/Tretor/src/main.py",
+                                "hostname": "DESKTOP-BNIABS5",
+                                "ip": "127.0.0.1",
+                                "isAttachedToCircle": false,
+                                "uuid": "84da3bce-81a1-4f0e-bb09-d7e6c01a0063"
+                            },
+                            {
+                                "commandLine": "C:\\Users\\molester\\anaconda3\\envs\\env\\python.exe c:/Users/molester/Documents/3A_SRI/ingesace_karaokev1.0/src/Tretor/src/main.py",
+                                "hostname": "DESKTOP-BNIABS5",
+                                "ip": "127.0.0.1",
+                                "isAttachedToCircle": false,
+                                "uuid": "c02321e0-cf15-49f1-9b18-31d5b608abd2"
+                            }
+                        ]
+                    },
+                    "class": "98b0997b-8dde-4797-899f-a34fe97cc72a",
+                    "comment": "",
+                    "height": 114,
+                    "name": "Tretor",
+                    "simulationTime": 5000,
+                    "uuid": "aefd634d-3ba8-4f33-9600-e77771acc10f",
+                    "width": 250,
+                    "x": 335.4940358334686,
+                    "y": 742.2029162245693
+                },
+                {
+                    "data": {
+                        "data_decoder": "BINARY",
+                        "msg_type": "",
+                        "proto_file_path": "",
+                        "string_decoder": "PLAIN_TEXT"
+                    },
+                    "height": 182.26950437031564,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.observer",
+                    "uuid": "f80445bf-8822-41cc-a0c0-cbde1bdb740c",
+                    "width": 180,
+                    "x": 651.5625730882233,
+                    "y": 715.457194480427
+                },
+                {
+                    "data": {
+                        "arguments": [
+                            {
+                                "url": "/data/icones/learn.png"
+                            },
+                            {
+                                "x": "0"
+                            },
+                            {
+                                "y": "0"
+                            }
+                        ],
+                        "selectedAgentUuid": "ed92e37f-6370-4b4d-ab35-33313ecbd1ae",
+                        "selectedService": "addImageFromUrl"
+                    },
+                    "height": 229,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.servicecaller",
+                    "uuid": "50891748-b37d-451b-920f-5e0d002b251a",
+                    "width": 246,
+                    "x": 1043.1214789371193,
+                    "y": 705.6785173994964
+                },
+                {
+                    "agent": {
+                        "instances": [
+                            {
+                                "commandLine": "C:\\Users\\ghazo\\AppData\\Local\\Programs\\Python\\Python38\\python.exe main.py --device Wi-Fi --port 5672",
+                                "hostname": "DESKTOP-41HPS4L",
+                                "ip": "172.17.47.187",
+                                "isAttachedToCircle": false,
+                                "mac": "BC:09:1B:FB:8C:77",
+                                "uuid": "2cd38bcd-efc5-4cf8-a165-6ad66d208636"
+                            },
+                            {
+                                "commandLine": "C:\\Users\\ghazo\\AppData\\Local\\Programs\\Python\\Python38\\python.exe main.py",
+                                "hostname": "DESKTOP-41HPS4L",
+                                "ip": "172.17.47.187",
+                                "isAttachedToCircle": false,
+                                "mac": "BC:09:1B:FB:8C:77",
+                                "uuid": "940f69ee-4a11-48a3-bcd1-1d52b8b87ec3"
+                            },
+                            {
+                                "commandLine": "C:\\Users\\ghazo\\AppData\\Local\\Programs\\Python\\Python38\\python.exe c:/Users/ghazo/Documents/Ingescape/sandbox/KaraokeIngescape/src/main.py",
+                                "hostname": "DESKTOP-41HPS4L",
+                                "ip": "172.17.47.187",
+                                "isAttachedToCircle": false,
+                                "mac": "BC:09:1B:FB:8C:77",
+                                "uuid": "1b1fede6-94be-484d-a14a-3ddb83d8fb4e"
+                            },
+                            {
+                                "commandLine": "C:\\Users\\molester\\anaconda3\\envs\\env\\python.exe c:/Users/molester/Documents/3A_SRI/ingesace_karaokev1.0/src/KaraokeIngescape/src/main.py",
+                                "hostname": "DESKTOP-BNIABS5",
+                                "ip": "127.0.0.1",
+                                "isAttachedToCircle": false,
+                                "uuid": "c6e62578-525c-442a-8abb-238acdef6aa1"
+                            }
+                        ]
+                    },
+                    "class": "05863c55-b076-4769-a489-180549bde24b",
+                    "comment": "",
+                    "height": 202,
+                    "name": "KaraokeIngescape",
+                    "simulationTime": 5000,
+                    "uuid": "2dad1280-ed98-4f84-875a-a8ee5ca1d897",
+                    "width": 250,
+                    "x": 299.151343320587,
+                    "y": 389.15137310496436
+                }
+            ],
+            "links": {
+                "mappings": [
+                    {
+                        "from": "Whiteboard",
+                        "fromInput": "backgroundColor",
+                        "to": "KaraokeIngescape",
+                        "toOutput": "backgroungColor"
+                    },
+                    {
+                        "from": "Whiteboard",
+                        "fromInput": "title",
+                        "to": "KaraokeIngescape",
+                        "toOutput": "title"
+                    },
+                    {
+                        "from": "Whiteboard",
+                        "fromInput": "labelsVisible",
+                        "to": "KaraokeIngescape",
+                        "toOutput": "hideLabels"
+                    },
+                    {
+                        "from": "Whiteboard",
+                        "fromInput": "clear",
+                        "to": "KaraokeIngescape",
+                        "toOutput": "clear"
+                    }
+                ],
+                "others": [
+                    {
+                        "destination": "f80445bf-8822-41cc-a0c0-cbde1bdb740c",
+                        "destinationIO": {
+                            "name": "wildcard",
+                            "type": "INPUT"
+                        },
+                        "source": "aefd634d-3ba8-4f33-9600-e77771acc10f",
+                        "sourceIO": {
+                            "name": "output",
+                            "type": "OUTPUT"
+                        }
+                    }
+                ]
+            },
+            "name": "Main view"
+        }
+    ]
+}
