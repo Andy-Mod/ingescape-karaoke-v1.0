@@ -77,6 +77,15 @@ python others/pretreatment.py
 ```
 This process may take a little time, so feel free to grab a coffee while it runs.
 
+### Instructions for File Cleanup
+
+After the process is complete, please follow these steps:
+
+1. Open the file located at `data/others/save_score.csv`.
+2. Delete its contents, leaving only the first line in the file.
+3. Ensure there are no new line characters after the first line.
+
+
 ## Usage
 
 At this stage, everything should be ready. Ensure that Circle and the WhiteBoard are running and connected properly.
