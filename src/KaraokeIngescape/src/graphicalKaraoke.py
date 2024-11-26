@@ -21,22 +21,6 @@ from whiteBordUtils import *
 
 class Application(tk.Tk):
 
-    def list_files_by_subdirectory(self, parent_directory):
-        # Initialize the dictionary
-        directory_files = {}
-        
-        # Iterate through all subdirectories in the parent directory
-        for root, dirs, files in os.walk(parent_directory):
-            # Skip the parent directory itself
-            if root == parent_directory:
-                continue
-            # Extract the subdirectory name
-            subdir = os.path.basename(root)
-            # Add the list of files as the value
-            directory_files[subdir] = files
-        
-        return directory_files
-
     def __init__(self, tretor, whiteboard): 
         super().__init__()
         
@@ -124,6 +108,22 @@ class Application(tk.Tk):
         self.scene_history = []
 
         self.show_Menu()
+        
+    def list_files_by_subdirectory(self, parent_directory):
+        # Initialize the dictionary
+        directory_files = {}
+        
+        # Iterate through all subdirectories in the parent directory
+        for root, dirs, files in os.walk(parent_directory):
+            # Skip the parent directory itself
+            if root == parent_directory:
+                continue
+            # Extract the subdirectory name
+            subdir = os.path.basename(root)
+            # Add the list of files as the value
+            directory_files[subdir] = files
+        
+        return directory_files
 
     def show_Menu(self):
         """Display content for Main Menu"""

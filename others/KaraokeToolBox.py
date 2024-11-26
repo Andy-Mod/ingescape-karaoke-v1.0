@@ -24,7 +24,7 @@ logging.getLogger('whisper').setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 
 class Treatment:
-    def __init__(self, data_path='data/mp3/', whisper_model_path='base.pt', score_path="data/others/scores.csv"):
+    def __init__(self, data_path='data/mp3/', whisper_model_path='base', score_path="data/others/scores.csv"):
         self.data_path = data_path
         self.score_path = score_path
         self.transcriber = whisper.load_model(whisper_model_path)
@@ -55,6 +55,22 @@ class Treatment:
         root_dir = os.path.join(dir, "../")
         os.chdir(root_dir)
         print(root_dir, os.getcwd())
+    
+    def list_files_by_subdirectory(self, parent_directory):
+        # Initialize the dictionary
+        directory_files = {}
+        
+        # Iterate through all subdirectories in the parent directory
+        for root, dirs, files in os.walk(parent_directory):
+            # Skip the parent directory itself
+            if root == parent_directory:
+                continue
+            # Extract the subdirectory name
+            subdir = os.path.basename(root)
+            # Add the list of files as the value
+            directory_files[subdir] = files
+        
+        return directory_files
     
     def _get_frequency(self, note, octave):
         return self._note_frequencies.get(note, {}).get(octave, None)
@@ -360,17 +376,19 @@ class Treatment:
 
         generate_practice_melodies_with_lyrics(practice_melodies, treator)
 
-        files = [file for file in os.listdir(self.data_path) if os.path.isfile(os.path.join(self.data_path, file))]
-        for file in files:
-            
-            full_path = os.path.join(self.data_path, file)
-            print(f"Processing file: {file}")
-            
-            wav_file = self._convert_to_wav(full_path)
-            vocals, _ = self._separate_audio(wav_file)
-            self._transcribe(vocals)
+        files = self.list_files_by_subdirectory("data/mp3")
+        
+        for sub_dir in files:
+            for file in files[sub_dir]:
+                print(sub_dir, file)
+                full_path = os.path.join(self.data_path, sub_dir, file)
+                print(f"Processing file: {file}")
+                
+                wav_file = self._convert_to_wav(full_path)
+                vocals, _ = self._separate_audio(wav_file)
+                self._transcribe(vocals)
 
-            self._save_file_informations("data/others/songs_info.json")
+                self._save_file_informations("data/others/songs_info.json")
             
         print("Pre-treatment process completed successfully.")
 
