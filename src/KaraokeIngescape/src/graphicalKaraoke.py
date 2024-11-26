@@ -549,9 +549,9 @@ class Application(tk.Tk):
         record = os.path.join(self.record_dir, os.path.basename(record_path).split('.')[0] + ".wav")
         result = self.treator.compare_audios(record, to_compare)
         
-        player_name = "player"+ str(uuid.uuid4())
+        player_name = "player"
         
-        args = (player_name, result, self.full_name, self.level)
+        args = (player_name, int(result), self.full_name, self.level)
         igs.service_call("Tretor", "save_score", args, "")
         
         self.show_result(result)
@@ -794,7 +794,7 @@ class Application(tk.Tk):
         if self.karaoke_thread:
             self.karaoke_thread.join(timeout=2)
         # Show results
-        args = ("player" + str(uuid.uuid4()), self.result_learn,'Learn Easy Mode', "Easy")
+        args = ("player", int(self.result_learn),'Learn Easy Mode', "Easy")
         igs.service_call("Tretor", "save_score", args, "")
         self.start_score_compute_learn()
         
@@ -821,7 +821,7 @@ class Application(tk.Tk):
             self.start_learn("Medium", file_name, song_path)
 
         # Show results
-        args = ("player" + str(uuid.uuid4()), self.result_learn,'Learn Medium Mode', "Medium")
+        args = ("player", int(self.result_learn),'Learn Medium Mode', "Medium")
         igs.service_call("Tretor", "save_score", args, "")
         self.start_score_compute_learn()
         
@@ -848,7 +848,7 @@ class Application(tk.Tk):
             self.start_learn("Hard", file_name, song_path)
 
         # Show results
-        args = ("player" + str(uuid.uuid4()), self.result_learn,'Learn Hard Mode', "Hard")
+        args = ("player", int(self.result_learn),'Learn Hard Mode', "Hard")
         igs.service_call("Tretor", "save_score", args, "")
         self.start_score_compute_learn()
 

@@ -101,3 +101,7 @@ python src/Tretor/src/main.py Tretor --verbose --port chosen_port --device chose
 
 You did it! The agents will soon be running in Circle. Once again, this might take a little time.
 
+
+## Bugs and known problems 
+
+While the lyrics display correctly on the Python interface, the whiteboard tends to crash due to the publishing rate. To prevent this issue, we decided to reduce the text publishing rate on the whiteboard. We are currently exploring better solutions to improve this further.
