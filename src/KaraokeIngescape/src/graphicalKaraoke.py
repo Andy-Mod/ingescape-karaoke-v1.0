@@ -21,6 +21,22 @@ from whiteBordUtils import *
 
 class Application(tk.Tk):
 
+    def list_files_by_subdirectory(self, parent_directory):
+        # Initialize the dictionary
+        directory_files = {}
+        
+        # Iterate through all subdirectories in the parent directory
+        for root, dirs, files in os.walk(parent_directory):
+            # Skip the parent directory itself
+            if root == parent_directory:
+                continue
+            # Extract the subdirectory name
+            subdir = os.path.basename(root)
+            # Add the list of files as the value
+            directory_files[subdir] = files
+        
+        return directory_files
+
     def __init__(self, tretor, whiteboard): 
         super().__init__()
         
@@ -108,22 +124,6 @@ class Application(tk.Tk):
         self.scene_history = []
 
         self.show_Menu()
-        
-    def list_files_by_subdirectory(self, parent_directory):
-        # Initialize the dictionary
-        directory_files = {}
-        
-        # Iterate through all subdirectories in the parent directory
-        for root, dirs, files in os.walk(parent_directory):
-            # Skip the parent directory itself
-            if root == parent_directory:
-                continue
-            # Extract the subdirectory name
-            subdir = os.path.basename(root)
-            # Add the list of files as the value
-            directory_files[subdir] = files
-        
-        return directory_files
 
     def show_Menu(self):
         """Display content for Main Menu"""
@@ -385,6 +385,8 @@ class Application(tk.Tk):
             for lyric in self.lyrics_data:
                 if lyric["timestamp"] <= current_time:
                     self.lyrics_label.config(text=lyric["lyric"].replace(',', ',\n'))
+                if lyric["timestamp"] == current_time:
+                    self.whiteboard.show_lyrics(lyric["lyric"].replace(',', ',\n'))
         except Exception as e:
             print(f"Error updating UI elements: {e}")
 
@@ -393,9 +395,7 @@ class Application(tk.Tk):
         self.karaoke_stop_event.clear()
         self.recording_stop_event.clear()
 
-        self.whiteboard.init_karaoke(self.full_name)
-        self.whiteboard.show_lyrics()
-
+        
         self.karaoke_on_play_song = selected_item
         self.lrc_file_path = os.path.join(self.lrc_dir, selected_item + '.lrc')
 
@@ -415,6 +415,8 @@ class Application(tk.Tk):
             pygame.mixer.init()
             pygame.mixer.music.load(self.song_file_path)
             self.song_length = pygame.mixer.Sound(self.song_file_path).get_length()
+
+            
         except Exception as e:
             print(f"Error loading karaoke resources: {e}")
             return
@@ -448,7 +450,6 @@ class Application(tk.Tk):
         )
         self.karaoke_thread.start()
         self.is_running = True
-        self.whiteboard.show_lyrics()
 
         self.scene_history.append(self.show_play)
 
@@ -482,6 +483,8 @@ class Application(tk.Tk):
         self.stop_button.grid(row=1, column=1, pady=10)
 
         igs.output_set_string("title", f"Now playing {self.full_name}")
+        self.whiteboard.init_karaoke(self.full_name)
+
 
 
     def restart_karaoke(self):
@@ -546,7 +549,7 @@ class Application(tk.Tk):
         record = os.path.join(self.record_dir, os.path.basename(record_path).split('.')[0] + ".wav")
         result = self.treator.compare_audios(record, to_compare)
         
-        player_name = "player_"+ str(uuid.uuid4())
+        player_name = "player"+ str(uuid.uuid4())
         
         args = (player_name, result, self.full_name, self.level)
         igs.service_call("Tretor", "save_score", args, "")
@@ -640,6 +643,8 @@ class Application(tk.Tk):
             self.frame.destroy()
         self.level = level
 
+        self.whiteboard.choosed_level(level)
+
         self.frame = tk.Frame(self)
         self.frame.grid(row=0, column=0, sticky="nsew")
 
@@ -685,6 +690,7 @@ class Application(tk.Tk):
         """Display content for Karaoke with improved thread and event handling."""
 
         self.recorded_output_path = os.path.join(self.record_dir, "learn" + level + str(uuid.uuid4()) + ".wav")
+        
 
         try:
             self.lrc_file_path = os.path.join(self.lrc_dir, file_name + ".lrc")
@@ -708,6 +714,7 @@ class Application(tk.Tk):
 
         self.countdown_label.config(text="Listen Carefully !")
         self.frame.update()
+        igs.output_set_string("title", "Listen Carefully !")
         time.sleep(1)
 
         pygame.mixer.music.play()
@@ -721,6 +728,7 @@ class Application(tk.Tk):
         
         self.countdown_label.config(text="Now Sing !")
         self.frame.update()
+        igs.output_set_string("title", "Now Sing !")
         
         self.recording_thread = threading.Thread(
             target=self.record_learning,
@@ -728,7 +736,6 @@ class Application(tk.Tk):
             daemon=True
         )
         self.recording_thread.start()
-        self.whiteboard.show_lyrics()
         
         time.sleep(self.song_length)
         
@@ -1060,4 +1067,3 @@ class Application(tk.Tk):
 
         except Exception as e:
             messagebox.showerror("Error", f"Error saving files: {e}")
-

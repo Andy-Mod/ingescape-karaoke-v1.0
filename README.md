@@ -63,7 +63,7 @@ pip install -U openai-whisper
 ```
 
 ### Downloading Data Files
-Follow this [link](https://drive.google.com/file/d/1Lw4P8eF8YxKQ4cJGKJKY6C_bAbtlaTiI/view?usp=sharing) to download the data files for the Karaoke App.
+Follow this [link](https://drive.google.com/file/d/1hvTD_66ktQRncpripQCPw5p4is-r3tAe/view?usp=sharing) to download the data files for the Karaoke App.
 Once downloaded, move the files to the project's directory (ingescape-karaoke-v1.0).
 
 ### Setting Up the App

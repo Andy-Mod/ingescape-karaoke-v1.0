@@ -12,7 +12,7 @@ import threading
 import sounddevice as sd
 import numpy as np
 from scipy.io.wavfile import write
-from KaraokeToolBox import Treator
+from KaraokeToolBox import Treatment
 import uuid
 import random
 
@@ -60,7 +60,7 @@ class Application(tk.Tk):
         os.makedirs(self.icones_dir, mode=0o777, exist_ok=True)
         os.makedirs(self.others_dir, mode=0o777, exist_ok=True)
 
-        self.treator = Treator(self.audio_dir)
+        self.treator = Treatment(self.audio_dir)
 
         self.songs_info = self.treator._load_song_infos(os.path.join(self.others_dir, "songs_info.json"))
         

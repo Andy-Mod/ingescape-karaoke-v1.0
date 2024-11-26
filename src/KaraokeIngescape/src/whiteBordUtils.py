@@ -172,8 +172,11 @@ class WhiteboardUtils:
         self.send_message("To proceed, select an option in the secondary interface.")
         igs.output_set_string("title", f"Now playing {song_full_name}")
 
-    def show_lyrics(self):
-        self.add_Image_From_URL("singKendrickLamar.gif",230.0, 100.00, "ScoreInterface")
+    def show_lyrics(self, lrc):
+        if self.get_id("lrcs") != None:
+            self.remove_elements("lrcs")
+
+        self.add_Text(lrc, 50, 105, "black", "lrcs")
 
     def show_score(self, score):
         self.clearWhitboard()
@@ -195,6 +198,9 @@ class WhiteboardUtils:
             Press 'Start' to begin!""")
 
         igs.output_set_string("title", f"Learn to sing !")
+
+    def choosed_level(self, level):
+        self.send_message(f"Level choosen: {level}")
 
     def show_learn(self, level):
         self.clearWhitboard()
