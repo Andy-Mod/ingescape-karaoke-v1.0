@@ -95,6 +95,7 @@ class Application(tk.Tk):
         
         # Submenu Menu
         menu_submenu = Menu(scene_menu, tearoff=0)
+        menu_submenu.add_command(label="Main Menu", command=self.show_Menu)
         menu_submenu.add_command(label="Play", command=self.show_select_category)
         menu_submenu.add_command(label="Learn", command=self.show_learn_alone)
         
@@ -407,14 +408,15 @@ class Application(tk.Tk):
             self.song_file_path = os.path.join(self.waves_dir, selected_item + '.wav')
             self.level = 'Easy'
 
+        alt = os.path.join(self.spleeter_dir, selected_item, selected_item + '_accompaniment.wav')
+        
         self.recorded_output_path = os.path.join(self.record_dir, self.karaoke_on_play_song + str(uuid.uuid4()) + ".wav")
 
         try:
             self.lyrics_data = self.parse_lrc(self.lrc_file_path)
-            self.lrcs = ""
             pygame.mixer.init()
             pygame.mixer.music.load(self.song_file_path)
-            self.song_length = pygame.mixer.Sound(self.song_file_path).get_length()
+            self.song_length = pygame.mixer.Sound(alt).get_length()
 
             
         except Exception as e:
@@ -550,7 +552,11 @@ class Application(tk.Tk):
         result = self.treator.compare_audios(record, to_compare)
         
         player_name = "player"
-        
+
+        self.full_name = self.karaoke_on_play_song
+        if self.karaoke_on_play_song in self.songs_info and self.songs_info[self.karaoke_on_play_song] != {}:
+            self.full_name = self.songs_info[self.karaoke_on_play_song]["ar"] + ' - ' + self.songs_info[self.karaoke_on_play_song]["ti"]
+            
         args = (player_name, int(result), self.full_name, self.level)
         igs.service_call("Tretor", "save_score", args, "")
         
@@ -848,6 +854,7 @@ class Application(tk.Tk):
             self.start_learn("Hard", file_name, song_path)
 
         # Show results
+        
         args = ("player", int(self.result_learn),'Learn Hard Mode', "Hard")
         igs.service_call("Tretor", "save_score", args, "")
         self.start_score_compute_learn()
