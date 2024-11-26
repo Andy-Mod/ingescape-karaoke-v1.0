@@ -114,3 +114,10 @@ You did it! The agents will soon be running in Circle. Once again, this might ta
 ## Bugs and known problems 
 
 While the lyrics display correctly on the Python interface, the whiteboard tends to crash due to the publishing rate. To prevent this issue, we decided to reduce the text publishing rate on the whiteboard. We are currently exploring better solutions to improve this further.
+
+
+## Demonstration vides
+Bellow are two links showing a demonstration usage of our project. 
+
+-[Demonstration for the mode "Play"](https://drive.google.com/file/d/1Ib76d8nKLMKiJqejuFwXSiHBG6GfZW-Y/view?usp=drive_link)
+-[Demonstration for the mode "Learn"](https://drive.google.com/file/d/17-2gZv649CS39icmuQXg55EkyAeONNXx/view?usp=sharing)
