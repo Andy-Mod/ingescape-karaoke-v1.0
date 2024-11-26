@@ -21,7 +21,7 @@ This project was built using:
 - [Ingescape Circle](https://ingescape.com/fr/circle/)
 - [The WhiteBoard](https://ingescape.com/)
 
-If you don't have [Ingescape Circle](https://ingescape.com/fr/circle/), a full version of the app running exclusively with Python is available [here](#) soon.
+If you don't have [Ingescape Circle](https://ingescape.com/fr/circle/), a full version of the app running exclusively with Python will soon be available [here](#).
 
 To run the code, you need to install the following:
 
